@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using People;
 
 namespace _3_25_ppl_addhtml.Controllers
 {
@@ -10,21 +11,23 @@ namespace _3_25_ppl_addhtml.Controllers
     {
         public ActionResult Index()
         {
+            DbManger mgr = new DbManger(Properties.Settings.Default.ConStr);
+            IEnumerable<Person> ppl =  mgr.GetPeople();
+            return View(ppl);
+        }
+
+       
+       public ActionResult AddPeople()
+        {   
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult AddPeopleDB(List<Person> ppl)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            DbManger mgr = new DbManger(Properties.Settings.Default.ConStr);
+            mgr.AddPeople(ppl);
+            return Redirect("/");
         }
     }
 }

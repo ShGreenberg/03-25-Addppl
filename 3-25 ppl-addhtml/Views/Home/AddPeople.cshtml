@@ -1,0 +1,21 @@
+﻿
+<div class="container">
+    <button class="btn btn-primary col-lg-offset-3" id="add-more-ppl">Add More People</button>
+    <form method="post" action="/home/AddPeopleDB">
+        <div class="row" id="addppl">
+            <br />
+            <div class="row  col-lg-offset-3">
+                <input type="text" placeholder="first name" name="ppl[0].firstname" />
+                <input type="text" placeholder="last name" name="ppl[0].lastname" />
+                <input type="text" placeholder="age" name="ppl[0].name" />
+            </div>
+        </div>
+        <br />
+        <button class="btn btn-success col-lg-offset-3">Submit</button>
+    </form>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/addppl.js"></script>
+}>
+
