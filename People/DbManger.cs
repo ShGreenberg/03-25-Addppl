@@ -19,19 +19,17 @@ namespace People
         {
             SqlConnection conn = new SqlConnection(_connString);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "INSERT INTO PEOPLE VALUES";
-            int count = 0;
+            cmd.CommandText = "INSERT INTO PEOPLE VALUES  (@firstname, @lastname, @age)";
+            conn.Open();
             foreach(Person p in ppl)
             {
-                count++;
-                cmd.CommandText += count == 1 ? "" : ",";
-                cmd.CommandText += $" (@firstname{count}, @lastname{count}, @age{count})";
-                cmd.Parameters.AddWithValue($"@firstname{count}", p.FirstName);
-                cmd.Parameters.AddWithValue($"@lastname{count}", p.LastName);
-                cmd.Parameters.AddWithValue($"@age{count}", p.Age);
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue($"@firstname", p.FirstName);
+                cmd.Parameters.AddWithValue($"@lastname", p.LastName);
+                cmd.Parameters.AddWithValue($"@age", p.Age);
+                cmd.ExecuteNonQuery();
             }
-            conn.Open();
-            cmd.ExecuteNonQuery();
             conn.Close();
             conn.Dispose();
         }

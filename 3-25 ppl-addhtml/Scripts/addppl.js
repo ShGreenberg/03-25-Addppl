@@ -5,6 +5,6 @@
         console.log(count);
         $("#addppl").append(`<div class="row col-lg-offset-3"><input type="text" placeholder="first name" name="ppl[${count}].firstname" />
                 <input type="text" placeholder="last name" name="ppl[${count}].lastname" />
-                <input type="text" placeholder="age" name="ppl[${count}].name" /></div>`)
+                <input type="text" placeholder="age" name="ppl[${count}].age" /></div>`)
     });
 });
